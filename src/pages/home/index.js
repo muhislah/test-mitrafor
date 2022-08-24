@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Carousel, Modal, Table, Typography } from 'antd'
+import { Carousel, Input, Modal, Table, Typography } from 'antd'
 import { columns} from './menu'
 import products from './../../data/product.json'
 const {Title, Paragraph} = Typography
 
 const MyTable = () => {
   const [showModal, setShowModal] = useState(false)
+  const [search, setSearch] = useState('')
   const [selectedRecord, setSelectedRecord] = useState({
     brand: "",
     category: "",
@@ -33,7 +34,8 @@ const MyTable = () => {
         <Title level={3}>Products</Title>
         <Paragraph>List of all Product Available</Paragraph>
      </Typography>
-      <Table onRow={(record) => ({ onClick: (event) => { handleRecord(record) } })} dataSource={products} columns={columns} />
+     <Input.Search placeholder='Search Here' type='search' style={{margin : "20px auto"}} enterButton={true} onSearch={(value) => setSearch(value)}/>
+      <Table onRow={(record) => ({ onClick: (event) => { handleRecord(record) } })} dataSource={products.filter(data => (data.title.toLowerCase()).includes(search.toLowerCase()))} columns={columns} />
       <Modal title={selectedRecord.title} visible={showModal} onOk={handleExit} onCancel={handleExit}>
         <Carousel autoplay={true} autoplaySpeed={1200}>
           {selectedRecord?.images.map(image =>

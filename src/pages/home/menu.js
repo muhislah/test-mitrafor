@@ -7,7 +7,6 @@ product.forEach((data) => {
     filter.push(data.brand)
   }
 })
-console.log(filter)
 export const menuItems = [
   {
     label : "Home",
