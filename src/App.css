@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+.image-carousel {
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  max-height: 400px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
